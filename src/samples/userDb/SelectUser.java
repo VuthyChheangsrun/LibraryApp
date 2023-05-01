@@ -18,10 +18,7 @@ public class SelectUser {
 
     public static boolean search(String email, String password) {
 
-        String email_ = email;
-        String pw = password;
-
-        try(ResultSet rs = ConnectDB.getConnection().execute("SELECT * FROM user WHERE email = ? AND password = ?", email_, pw)){
+        try(ResultSet rs = ConnectDB.getConnection().execute("SELECT * FROM user WHERE email = ? AND password = ?", email, password)){
             while(rs.next()){
                 System.out.printf("%-10s%-25s%-10s\n", 
                     rs.getString(1),
