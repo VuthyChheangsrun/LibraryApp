@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "LibraryApp_b42bb2b5"
+        },
+        {
+            "type": "java",
             "name": "InsertUser",
             "request": "launch",
             "mainClass": "samples.userDb.InsertUser",
