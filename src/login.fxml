@@ -38,7 +38,7 @@
             <PasswordField fx:id="password" promptText="Password" />
          </graphic>
       </Label>
-      <Button fx:id="login" mnemonicParsing="false" onAction="#userLogin" prefWidth="58.0" text="Login">
+      <Button fx:id="login" mnemonicParsing="false" onAction="#userLogin" prefWidth="58.0" style="-fx-background-color: white; -fx-border-color: gray; -fx-border-radius: 2;" text="Login">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

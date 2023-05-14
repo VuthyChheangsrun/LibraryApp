@@ -3,6 +3,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,6 +28,9 @@ public class signup {
     private Label existUser;
 
     @FXML
+    private Hyperlink blogIn;
+
+    @FXML
     void signUp(ActionEvent event) throws IOException {
         String email_ = email.getText();
         String pw_ = password.getText();
@@ -41,9 +45,16 @@ public class signup {
         else{
             InsertUser.insert(name_, email_, pw_);
             App m = new App();
-            m.changeScene("Login.fxml");
+            m.changeScene("login.fxml");
         }
 
     }
+
+    @FXML
+    void backToLogin(ActionEvent event) throws IOException{
+        App m = new App();
+        m.changeScene("login.fxml");
+    }
+
 
 }
