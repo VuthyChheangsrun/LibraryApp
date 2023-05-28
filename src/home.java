@@ -98,8 +98,17 @@ public class home {
 
     
     @FXML
-    void borrowClick(ActionEvent event) {
+    void borrowClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        root = loader.load();
+        
+        about ab = (about)loader.getController();
+        ab.getInfo(profile.getText());
 
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
