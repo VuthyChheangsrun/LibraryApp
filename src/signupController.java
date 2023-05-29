@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import samples.userDb.InsertUser;
 import samples.userDb.SelectUser;
 
-public class signup {
+public class signupController {
 
     @FXML
     private TextField email;

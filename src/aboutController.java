@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class about {
+public class aboutController {
 
     @FXML
     private Label profile;
@@ -27,7 +27,7 @@ public class about {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
         root = loader.load();
         
-        home ab = (home)loader.getController();
+        homeController ab = (homeController)loader.getController();
         ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

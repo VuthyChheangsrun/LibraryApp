@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import samples.db.ConnectDB;
 
-public class home {
+public class homeController {
 
     @FXML
     private Label profile;
@@ -68,7 +68,7 @@ public class home {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("about.fxml"));
         root = loader.load();
         
-        about ab = (about)loader.getController();
+        aboutController ab = (aboutController)loader.getController();
         ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -82,7 +82,7 @@ public class home {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
         root = loader.load();
         
-        about ab = (about)loader.getController();
+        aboutController ab = (aboutController)loader.getController();
         ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -102,7 +102,7 @@ public class home {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
         root = loader.load();
         
-        about ab = (about)loader.getController();
+        aboutController ab = (aboutController)loader.getController();
         ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

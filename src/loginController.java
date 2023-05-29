@@ -12,7 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import samples.userDb.SelectUser;
-public class login {
+public class loginController {
 
     @FXML
     private TextField email;
@@ -51,7 +51,7 @@ public class login {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             root = loader.load();
             
-            home userHome = (home)loader.getController();
+            homeController userHome = (homeController)loader.getController();
             userHome.getInfo(email_, password_);
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
