@@ -23,59 +23,6 @@
                   <Button fx:id="aboutButton" layoutX="208.0" layoutY="10.0" mnemonicParsing="false" onAction="#aboutClick" onMouseEntered="#mEnter" onMouseExited="#mExit" style="-fx-background-color: transparent; -fx-background-radius: 0;" styleClass="menuList" text="About" />
                </children>
             </HBox>
-            <VBox alignment="TOP_CENTER">
-               <children>
-                  <Label prefHeight="18.0" prefWidth="114.0" text="Your borrowed book:">
-                     <VBox.margin>
-                        <Insets right="450.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0">
-                     <children>
-                        <VBox prefHeight="18.0" prefWidth="71.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="165.2">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20th century boys" />
-                           </children>
-                        </VBox>
-                        <VBox layoutX="77.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="141.2">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Soka" />
-                           </children>
-                        </VBox>
-                        <VBox layoutX="489.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Realease date" wrappingWidth="147.6">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20/01/2001" />
-                           </children>
-                        </VBox>
-                        <VBox layoutX="562.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9.5" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
             <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="36.0">
                <children>
                   <Label text="Latest added:">
@@ -85,7 +32,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0">
                      <children>
-                        <VBox prefHeight="18.0" prefWidth="71.0">
+                        <VBox fx:id="titleCon" prefHeight="18.0" prefWidth="71.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="165.2">
                                  <font>
@@ -95,7 +42,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20th century boys" />
                            </children>
                         </VBox>
-                        <VBox layoutX="77.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
+                        <VBox fx:id="authorCon" layoutX="77.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Author" wrappingWidth="141.2">
                                  <font>
@@ -105,7 +52,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Soka" />
                            </children>
                         </VBox>
-                        <VBox layoutX="489.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
+                        <VBox fx:id="realeaseCon" layoutX="489.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Realease date" wrappingWidth="147.6">
                                  <font>
@@ -115,7 +62,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20/01/2001" />
                            </children>
                         </VBox>
-                        <VBox layoutX="562.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
+                        <VBox fx:id="ratingCon" layoutX="562.0" layoutY="10.0" prefHeight="18.0" prefWidth="71.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rating">
                                  <font>
