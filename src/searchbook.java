@@ -63,7 +63,7 @@ public class searchbook {
     
     @FXML
     void searchClick(ActionEvent event) {
-        BookIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        BookIDTableColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));;
     }
 
 }

@@ -22,4 +22,4 @@
       </TableView>
       <Button fx:id="searchButtton" layoutX="934.0" layoutY="22.0" mnemonicParsing="false" onAction="#searchClick" prefHeight="25.0" prefWidth="116.0" text="Search" />
    </children>
-</Pane>
+</Pane> 
