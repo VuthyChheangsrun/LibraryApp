@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import samples.db.ConnectDB;
 
@@ -34,6 +35,19 @@ public class homeController {
 
     @FXML
     private Button logoutB;
+
+    @FXML
+    private VBox authorCon;
+
+    @FXML
+    private VBox ratingCon;
+
+    @FXML
+    private VBox realeaseCon;
+
+    @FXML
+    private VBox titleCon;
+
 
     private Stage stage;
 	private Scene scene;
@@ -139,6 +153,10 @@ public class homeController {
     }
     public void getInfo(String username){ //getting user info from other page
         profile.setText(username);
+    }
+
+    public void getUsername(){
+        
     }
 }
 
