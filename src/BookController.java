@@ -1,5 +1,3 @@
-package controllers;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -214,7 +212,7 @@ public class BookController implements Initializable {
             // Search Function
             String search = searchField.getText();
             if (search != "") {
-            sql += " WHERE title LIKE '%" + search + "%'";
+                sql += " WHERE title LIKE '%" + search + "%'";
             }
 
             PreparedStatement statement = conn.prepareStatement(sql);

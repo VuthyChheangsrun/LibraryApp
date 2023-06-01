@@ -1,5 +1,3 @@
-package controllers;
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +48,6 @@ public class BorrowController implements Initializable {
 
     @FXML
     private Button searchBtn;
-
 
     @FXML
     private Button btnUpdate;
@@ -276,10 +273,10 @@ public class BorrowController implements Initializable {
         try {
             Connection conn = DatabaseConnector.getConnection();
             String sql = "SELECT * FROM borrow";
-            //Search Function
+            // Search Function
             String search = searchField.getText();
             if (search != "") {
-            sql += " WHERE name LIKE '%" + search + "%'";
+                sql += " WHERE name LIKE '%" + search + "%'";
             }
 
             PreparedStatement statement = conn.prepareStatement(sql);

@@ -1,5 +1,3 @@
-package samples;
-
 public class Book {
     private String bookId;
     private String title;
