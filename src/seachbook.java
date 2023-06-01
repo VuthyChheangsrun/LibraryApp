@@ -1,5 +1,5 @@
-public class seachbook {
-    
+package Testing;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -174,5 +174,4 @@ public class Searchbookcontroller implements Initializable {
     	
     	TableView.setItems(list);
     }
-    
 }
