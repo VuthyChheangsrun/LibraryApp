@@ -62,4 +62,7 @@ public class Book {
         this.category = category;
         this.status = status;
     }
+
+    public Book(int int1, String string, String string2, String string3, String string4) {
+    }
 }

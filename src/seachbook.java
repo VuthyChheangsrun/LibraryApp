@@ -1,3 +1,5 @@
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import Testing.Book.Books;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,7 +28,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.scene.Node;
 
-public class Searchbookcontroller implements Initializable {
+public class seachbook implements Initializable {
     @FXML
     private TextField authortxt;
     @FXML
@@ -41,17 +42,17 @@ public class Searchbookcontroller implements Initializable {
     @FXML
     private TextField categorytxt;
     @FXML
-    private TableView<Books> TableView;
+    private TableView<Book> TableView;
     @FXML
-    private TableColumn<Books, Integer> idColumn;  
+    private TableColumn<Book, Integer> idColumn;  
     @FXML
-    private TableColumn<Books, String> titleColumn;
+    private TableColumn<Book, String> titleColumn;
     @FXML
-    private TableColumn<Books, String> authorColumn;
+    private TableColumn<Book, String> authorColumn;
     @FXML
-    private TableColumn<Books, Integer> yearColumn;
+    private TableColumn<Book, Integer> yearColumn;
     @FXML
-    private TableColumn<Books, String> pagesColumn;
+    private TableColumn<Book, String> pagesColumn;
 
 	Stage stage;
 	Scene scene;
@@ -139,8 +140,8 @@ public class Searchbookcontroller implements Initializable {
 
     }
     
-    public ObservableList<Books> getBooksList(){
-    	ObservableList<Books> booksList = FXCollections.observableArrayList();
+    public ObservableList<Book> getBooksList(){
+    	ObservableList<Book> booksList = FXCollections.observableArrayList();
     	Connection connection = getConnection();
     	String query = "SELECT * FROM books ";
     	Statement st;
@@ -149,9 +150,9 @@ public class Searchbookcontroller implements Initializable {
     	try {
 			st = connection.createStatement();
 			rs = st.executeQuery(query);
-			Books books;
+			Book books;
 			while(rs.next()) {
-				books = new Books(rs.getInt("Id"),rs.getString("Title"),rs.getString("Author"),rs.getString("Year"),rs.getString("Category"));
+				books = new Book(rs.getInt("Id"),rs.getString("Title"),rs.getString("Author"),rs.getString("Year"),rs.getString("Category"));
 				booksList.add(books);
 				}
 		} catch (Exception e) {
@@ -162,13 +163,13 @@ public class Searchbookcontroller implements Initializable {
     
     // I had to change ArrayList to ObservableList I didn't find another option to do this but this works :)
     public void showBooks() {
-    	ObservableList<Books> list = getBooksList();
+    	ObservableList<Book> list = getBooksList();
     	
-    	idColumn.setCellValueFactory(new PropertyValueFactory<Books,Integer>("id"));
-    	titleColumn.setCellValueFactory(new PropertyValueFactory<Books,String>("title"));
-    	authorColumn.setCellValueFactory(new PropertyValueFactory<Books,String>("author"));
-    	yearColumn.setCellValueFactory(new PropertyValueFactory<Books,Integer>("year"));
-    	pagesColumn.setCellValueFactory(new PropertyValueFactory<Books,String>("category"));
+    	idColumn.setCellValueFactory(new PropertyValueFactory<Book,Integer>("id"));
+    	titleColumn.setCellValueFactory(new PropertyValueFactory<Book,String>("title"));
+    	authorColumn.setCellValueFactory(new PropertyValueFactory<Book,String>("author"));
+    	yearColumn.setCellValueFactory(new PropertyValueFactory<Book,Integer>("year"));
+    	pagesColumn.setCellValueFactory(new PropertyValueFactory<Book,String>("category"));
     	
     	TableView.setItems(list);
     }
