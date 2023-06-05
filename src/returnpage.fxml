@@ -17,8 +17,8 @@
             <TableColumn fx:id="sidCol" prefWidth="66.0" text="SID" />
             <TableColumn fx:id="bdCol" prefWidth="75.0" text="Borrow.D" />
             <TableColumn fx:id="rdCol" prefWidth="67.0" text="Re.D" />
-            <TableColumn fx:id="bookCol" prefWidth="67.0" text="Telephone" />
-            <TableColumn fx:id="bookCol1" prefWidth="67.0" text="Returned" />
+            <TableColumn fx:id="telephoneCol" prefWidth="67.0" text="Telephone" />
+            <TableColumn fx:id="ReturnCol" prefWidth="67.0" text="Returned" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -29,9 +29,9 @@
       <Button layoutX="235.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Home" />
       <Button layoutX="451.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Borrowing" />
       <Button layoutX="571.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Return" />
-      <Button layoutX="341.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Borrow" />
+      <Button fx:id="swapborrow" layoutX="341.0" layoutY="14.0" mnemonicParsing="false" onAction="#swtBorrow" prefHeight="25.0" prefWidth="66.0" text="Borrow" />
       <Button layoutX="331.0" layoutY="361.0" mnemonicParsing="false" onAction="#doReturn" text="Confirm" />
-      <TextField fx:id="fsfe" layoutX="102.0" layoutY="55.0" text="adw" />
+      <TextField fx:id="fsfe" layoutX="102.0" layoutY="55.0" onMouseDragExited="#extReturn" text="adw" />
       <SplitMenuButton fx:id="dfd" layoutX="331.0" layoutY="55.0" mnemonicParsing="false" text="dwawd">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
