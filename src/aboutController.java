@@ -37,6 +37,6 @@ public class aboutController {
     }
 
     public void getInfo(String username){
-        profile.setText(username);
+        //profile.setText(username);
     }
 }

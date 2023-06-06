@@ -79,10 +79,6 @@
       </Pane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="profile" layoutX="14.0" layoutY="1.0" prefHeight="26.0" prefWidth="81.0" text="Username" textFill="WHITE" />
-         </children>
-      </AnchorPane>
+      <AnchorPane prefHeight="31.0" prefWidth="600.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
