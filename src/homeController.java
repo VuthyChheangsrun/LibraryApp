@@ -152,7 +152,7 @@ public class homeController {
         
     }
     public void getInfo(String username){ //getting user info from other page
-        profile.setText(username);
+        //profile.setText(username);
     }
 
     public void getUsername(){

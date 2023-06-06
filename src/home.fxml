@@ -90,12 +90,10 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="600.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="profile" prefHeight="31.2" prefWidth="81.0" text="Username" textFill="WHITE">
+            <Button fx:id="logoutB" mnemonicParsing="false" onAction="#LogoutClick" onMouseEntered="#mEnter" onMouseExited="#mExit" style="-fx-border-color: white; -fx-background-color: gray;" text="Logout" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="25.0" />
-               </HBox.margin>
-            </Label>
-            <Button fx:id="logoutB" mnemonicParsing="false" onAction="#LogoutClick" onMouseEntered="#mEnter" onMouseExited="#mExit" style="-fx-border-color: white; -fx-background-color: gray;" text="Logout" textFill="WHITE" />
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
    </bottom>
