@@ -1,3 +1,4 @@
+
 public class Borrow {
     private String borrowId;
     private String name;
@@ -5,6 +6,8 @@ public class Borrow {
     private String borrowDate;
     private String returnDate;
     private String book;
+    private String telephone;
+    private String isReturn;
 
     public String getBorrowId() {
         return borrowId;
@@ -54,12 +57,42 @@ public class Borrow {
         this.book = book;
     }
 
-    public Borrow(String borrowId, String name, String schoolId, String borrowDate, String returnDate, String book) {
+    public String getIsReturn() {
+        return isReturn;
+    }
+
+    public void setIsReturn(String isReturn) {
+        this.isReturn = isReturn;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Borrow(String borrowId, String name, String schoolId, String borrowDate, String returnDate, String book,
+            String isReturn, String telephone) {
         this.borrowId = borrowId;
         this.name = name;
         this.schoolId = schoolId;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
         this.book = book;
+        this.isReturn = isReturn;
+        this.telephone = telephone;
+    }
+
+    public Borrow(String borrowId, String name, String schoolId, String borrowDate, String returnDate, String book,
+            String isReturn) {
+        this.borrowId = borrowId;
+        this.name = name;
+        this.schoolId = schoolId;
+        this.borrowDate = borrowDate;
+        this.returnDate = returnDate;
+        this.book = book;
+        this.isReturn = isReturn;
     }
 }

@@ -1,15 +1,20 @@
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -18,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class BorrowController implements Initializable {
 
@@ -40,6 +46,9 @@ public class BorrowController implements Initializable {
     private TextField nameField;
 
     @FXML
+    private TextField telField;
+
+    @FXML
     private Button btnInsert;
 
     @FXML
@@ -47,6 +56,7 @@ public class BorrowController implements Initializable {
 
     @FXML
     private Button searchBtn;
+
 
     @FXML
     private Button btnUpdate;
@@ -79,6 +89,9 @@ public class BorrowController implements Initializable {
     private TableColumn<Borrow, String> bookCol;
 
     @FXML
+    private TableColumn<Borrow, String> telCol;
+
+    @FXML
     void getItem(MouseEvent event) {
         Integer index = tableView.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
@@ -90,6 +103,21 @@ public class BorrowController implements Initializable {
         borrowDateField.setText(bdCol.getCellData(index).toString());
         returnDateField.setText(rdCol.getCellData(index).toString());
         bookField.setText(bookCol.getCellData(index).toString());
+        
+    }
+
+    @FXML
+    private Button btnHome;
+
+    @FXML
+    void swtHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
     }
 
     @FXML
@@ -148,8 +176,9 @@ public class BorrowController implements Initializable {
         String borrowDate = borrowDateField.getText();
         String returnDate = returnDateField.getText();
         String book = bookField.getText();
+        String telephone = telField.getText();
         if (name == "" || name == null || schoolId == "" || schoolId == null || borrowDate == "" || borrowDate == null
-                || returnDate == "" || returnDate == null || book == "" || book == null) {
+                || returnDate == "" || returnDate == null || book == "" || book == null || telephone == "" || telephone == null ) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -158,13 +187,14 @@ public class BorrowController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnector.getConnection()) {
-                String sqlInsert = "INSERT INTO `borrow`(`name`, `schoolId`, `borrowDate`, `returnDate`, `book`) VALUES (?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `borrow`(`name`, `schoolId`, `borrowDate`, `returnDate`, `book`,`telephone`) VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, name);
                 statement.setString(2, schoolId);
                 statement.setString(3, borrowDate);
                 statement.setString(4, returnDate);
                 statement.setString(5, book);
+                statement.setString(6, telephone);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -250,6 +280,7 @@ public class BorrowController implements Initializable {
                         borrowDateField.setText(null);
                         returnDateField.setText(null);
                         bookField.setText(null);
+                       
 
                         showBorrows();
                     }
@@ -272,10 +303,10 @@ public class BorrowController implements Initializable {
         try {
             Connection conn = DatabaseConnector.getConnection();
             String sql = "SELECT * FROM borrow";
-            // Search Function
+            //Search Function
             String search = searchField.getText();
             if (search != "") {
-                sql += " WHERE name LIKE '%" + search + "%'";
+            sql += " WHERE name LIKE '%" + search + "%'";
             }
 
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -284,7 +315,9 @@ public class BorrowController implements Initializable {
             while (resultSet.next()) {
                 borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
                         resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
-                        resultSet.getString("returnDate"), resultSet.getString("book"));
+                        resultSet.getString("returnDate"), resultSet.getString("book"),resultSet.getString("isReturn") ,resultSet.getString("telephone"));
+                    
+                System.out.println(resultSet.getString("returnDate"));
                 borrowList.add(borrows);
             }
         } catch (Exception e) {
@@ -302,6 +335,9 @@ public class BorrowController implements Initializable {
         bdCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("borrowDate"));
         rdCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("returnDate"));
         bookCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("book"));
+        telCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("telephone"));
+
+        
         tableView.setItems(list);
     }
 
@@ -333,4 +369,19 @@ public class BorrowController implements Initializable {
         showBorrows();
     }
 
+    @FXML
+    void extSearch(MouseEvent event) throws SQLException {
+        showBorrows() ;
+    }
+
+    @FXML
+    void swtReturn(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("returnpage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
 }

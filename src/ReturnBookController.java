@@ -1,4 +1,4 @@
-package controllers;
+
 
 import java.beans.Statement;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import configs.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +29,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import util.IsNullAndEmpty;
 
 public class ReturnBookController implements Initializable {
 
@@ -135,8 +133,23 @@ public class ReturnBookController implements Initializable {
     }
 
     @FXML
+    private Button btnHome;
+
+    @FXML
+    void swtHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
+
+    @FXML
     void swtBorrow(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/Borrowpage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Borrowpage.fxml"));
         Parent welcomeParent = loader.load();
         Scene welcomeScene = new Scene(welcomeParent);
 
@@ -149,7 +162,7 @@ public class ReturnBookController implements Initializable {
         ObservableList<Borrow> borrowList = FXCollections.observableArrayList();
         try {
             Connection conn = DatabaseConnector.getConnection();
-            String sql = "SELECT * FROM borrow WHERE isReturn = '1'";
+            String sql = "SELECT * FROM borrow WHERE isReturn = 'No Returned' ";
             // //Search Function
             // String search = searchField.getText();
             // if (search != "") {
@@ -158,7 +171,7 @@ public class ReturnBookController implements Initializable {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Borrow borrows;
-            while (resultSet.next()) {
+            while (resultSet.next()) {            
                 borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
                         resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
                         resultSet.getString("returnDate"), resultSet.getString("book"),
@@ -172,6 +185,8 @@ public class ReturnBookController implements Initializable {
 
     }
 
+    
+
     public void showBorrows() throws SQLException {
         ObservableList<Borrow> list = getBooksList();
         idCol.setCellValueFactory(new PropertyValueFactory<Borrow, String>("borrowId"));
@@ -184,10 +199,9 @@ public class ReturnBookController implements Initializable {
 
         tableView.setItems(list);
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> list = FXCollections.observableArrayList("0", "1");
+        ObservableList<String> list = FXCollections.observableArrayList("Returned", "Not Return");
         selectCombo.setItems(list);
         try {
             showBorrows();
@@ -196,4 +210,5 @@ public class ReturnBookController implements Initializable {
             e.printStackTrace();
         }
     }
+    
 }
