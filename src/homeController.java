@@ -115,7 +115,7 @@ public class homeController {
     
     @FXML
     void borrowClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BorrowPage.fxml"));
         root = loader.load();
         
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
