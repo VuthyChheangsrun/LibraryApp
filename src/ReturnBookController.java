@@ -1,5 +1,6 @@
 package controllers;
 
+import java.beans.Statement;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -18,8 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,18 +30,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import util.IsNullAndEmpty;
 
 public class ReturnBookController implements Initializable {
 
     @FXML
-    private TextField fsfe;
+    private Button btnreturn;
 
     @FXML
     private Button swapborrow;
 
-    @FXML
-    private SplitMenuButton dfd;
-    
     @FXML
     private TableView<Borrow> tableView;
 
@@ -46,7 +47,7 @@ public class ReturnBookController implements Initializable {
     private TableColumn<Borrow, String> idCol;
 
     @FXML
-    private TableColumn<Borrow, String>  nameCol;
+    private TableColumn<Borrow, String> nameCol;
 
     @FXML
     private TableColumn<Borrow, String> sidCol;
@@ -75,13 +76,52 @@ public class ReturnBookController implements Initializable {
     private Button searchBtn;
 
     @FXML
-    void doReturn(ActionEvent event) throws SQLException{
-       showBorrows();
+    private ComboBox selectCombo;
+
+    @FXML
+    private TextField idField;
+
+    @FXML
+    void doReturn(ActionEvent event) {
+        
+        String id = idField.getText();
+        String update = selectCombo.getSelectionModel().getSelectedItem().toString();
+        if(id!=""||update!=""){
+            try(Connection conn = DatabaseConnector.getConnection()) {
+                String sql = "UPDATE borrow SET isReturn= ? WHERE borrowId= ?";
+                
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, update);
+                statement.setString(2, id);
+                statement.executeUpdate();
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("updated!");
+                alert.showAndWait();
+                showBorrows();
+    
+    
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }else{
+            Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Fail");
+                alert.setHeaderText(null);
+                alert.setContentText("Fail update!");
+                alert.showAndWait();
+        }
+        
     }
 
     @FXML
     void getItem(MouseEvent event) {
-
+        Integer index = tableView.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        idField.setText(idCol.getCellData(index).toString());
     }
 
     @FXML
@@ -90,11 +130,10 @@ public class ReturnBookController implements Initializable {
     }
 
     @FXML
-    void extReturn(MouseDragEvent event) throws SQLException{
-        showBorrows() ;
+    void extReturn(MouseDragEvent event) throws SQLException {
+
     }
 
-    
     @FXML
     void swtBorrow(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/Borrowpage.fxml"));
@@ -105,26 +144,25 @@ public class ReturnBookController implements Initializable {
         window.setScene(welcomeScene);
         window.show();
     }
-    
 
     public ObservableList<Borrow> getBooksList() throws SQLException {
         ObservableList<Borrow> borrowList = FXCollections.observableArrayList();
         try {
             Connection conn = DatabaseConnector.getConnection();
-            String sql = "SELECT * FROM borrow";
+            String sql = "SELECT * FROM borrow WHERE isReturn = '1'";
             // //Search Function
             // String search = searchField.getText();
             // if (search != "") {
             // sql += " WHERE name LIKE '%" + search + "%'";
             // }
-
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Borrow borrows;
             while (resultSet.next()) {
                 borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
                         resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
-                        resultSet.getString("returnDate"), resultSet.getString("book"),resultSet.getString("isReturn"));
+                        resultSet.getString("returnDate"), resultSet.getString("book"),
+                        resultSet.getString("isReturn"));
                 borrowList.add(borrows);
             }
         } catch (Exception e) {
@@ -149,13 +187,13 @@ public class ReturnBookController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       try {
-        showBorrows();
-    } catch (SQLException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        ObservableList<String> list = FXCollections.observableArrayList("0", "1");
+        selectCombo.setItems(list);
+        try {
+            showBorrows();
+            getBooksList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    }
-
-    
 }
