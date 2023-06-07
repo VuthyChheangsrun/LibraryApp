@@ -62,4 +62,12 @@ public class Book {
         this.category = category;
         this.status = status;
     }
+
+    public Book(String bookId, String title, String author, String year, String category) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.category = category;
+    }
 }
