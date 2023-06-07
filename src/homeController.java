@@ -48,22 +48,29 @@ public class homeController {
     @FXML
     private VBox titleCon;
 
-
     private Stage stage;
-	private Scene scene;
-	private Parent root;
+    private Scene scene;
+    private Parent root;
 
     @FXML
-    void mEnter(MouseEvent event) { //when mouse is hovering over any of these buttons, it turn gray
-        if(search.isHover()) search.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
-        else if (addBook.isHover()) addBook.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
-        else if (list.isHover()) list.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
-        else if (aboutButton.isHover()) aboutButton.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
-        else if (borrowBook.isHover()) borrowBook.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
-        else if (logoutB.isHover()) logoutB.setStyle("-fx-background-radius: 0; -fx-background-color: white; -fx-text-Fill: black; -fx-border-color: white");
+    void mEnter(MouseEvent event) { // when mouse is hovering over any of these buttons, it turn gray
+        if (search.isHover())
+            search.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
+        else if (addBook.isHover())
+            addBook.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
+        else if (list.isHover())
+            list.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
+        else if (aboutButton.isHover())
+            aboutButton.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
+        else if (borrowBook.isHover())
+            borrowBook.setStyle("-fx-background-radius: 0; -fx-background-color: gray; -fx-text-Fill: white");
+        else if (logoutB.isHover())
+            logoutB.setStyle(
+                    "-fx-background-radius: 0; -fx-background-color: white; -fx-text-Fill: black; -fx-border-color: white");
     }
+
     @FXML
-    void mExit(MouseEvent event) { //when mouse is out of the buttons
+    void mExit(MouseEvent event) { // when mouse is out of the buttons
         search.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
         addBook.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
         list.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
@@ -74,28 +81,33 @@ public class homeController {
 
     @FXML
     void addClick(ActionEvent event) throws IOException {
-        App m = new App();
-        m.changeScene("add_newbook.fxml");
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+
     }
 
     @FXML
-    void aboutClick(ActionEvent event) throws IOException {     //when clicked about button
+    void aboutClick(ActionEvent event) throws IOException { // when clicked about button
         FXMLLoader loader = new FXMLLoader(getClass().getResource("about.fxml"));
         root = loader.load();
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    
+
     @FXML
     void listClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListBook.fxml"));
         root = loader.load();
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -106,19 +118,18 @@ public class homeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("searchbook.fxml"));
         root = loader.load();
 
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    
     @FXML
     void borrowClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Borrowpage.fxml"));
         root = loader.load();
-        
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -130,23 +141,26 @@ public class homeController {
         m.changeScene("login.fxml");
     }
 
-    public void getInfo(String email, String password){     //getting user info from login page
+    public void getInfo(String email, String password) { // getting user info from login page
 
-        try(ResultSet rs = ConnectDB.getConnection().execute("SELECT * FROM user WHERE email = ? AND password = ?", email, password)){
-            while(rs.next()){
+        try (ResultSet rs = ConnectDB.getConnection().execute("SELECT * FROM user WHERE email = ? AND password = ?",
+                email, password)) {
+            while (rs.next()) {
                 String username = rs.getString(1);
                 profile.setText(username);
 
             }
-        }catch(Exception ex){ex.printStackTrace();}
-        
-    }
-    public void getInfo(String username){ //getting user info from other page
-        //profile.setText(username);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
-    public void getUsername(){
-        
+    public void getInfo(String username) { // getting user info from other page
+        // profile.setText(username);
+    }
+
+    public void getUsername() {
+
     }
 }
-

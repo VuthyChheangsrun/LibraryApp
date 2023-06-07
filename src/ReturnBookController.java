@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+//package controllers;
+>>>>>>> d36baed1a5c6fede6802525ffa3a79f43985e731
 
 import java.beans.Statement;
 import java.io.IOException;
@@ -9,6 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
+=======
+//import configs.DatabaseConnector;
+>>>>>>> d36baed1a5c6fede6802525ffa3a79f43985e731
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +37,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+<<<<<<< HEAD
+=======
+//import util.IsNullAndEmpty;
+>>>>>>> d36baed1a5c6fede6802525ffa3a79f43985e731
 
 public class ReturnBookController implements Initializable {
 
@@ -171,6 +183,7 @@ public class ReturnBookController implements Initializable {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Borrow borrows;
+<<<<<<< HEAD
             while (resultSet.next()) {            
                 borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
                         resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
@@ -178,6 +191,15 @@ public class ReturnBookController implements Initializable {
                         resultSet.getString("isReturn"));
                 borrowList.add(borrows);
             }
+=======
+            // while (resultSet.next()) {
+            //     borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
+            //             resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
+            //             resultSet.getString("returnDate"), resultSet.getString("book"),
+            //             resultSet.getString("isReturn"));
+            //     borrowList.add(borrows);
+            // }
+>>>>>>> d36baed1a5c6fede6802525ffa3a79f43985e731
         } catch (Exception e) {
             e.printStackTrace();
         }
