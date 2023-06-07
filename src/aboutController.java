@@ -27,9 +27,6 @@ public class aboutController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
         root = loader.load();
         
-        homeController ab = (homeController)loader.getController();
-        ab.getInfo(profile.getText());
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

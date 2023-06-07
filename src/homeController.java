@@ -73,7 +73,9 @@ public class homeController {
     }
 
     @FXML
-    void addClick(ActionEvent event) {
+    void addClick(ActionEvent event) throws IOException {
+        App m = new App();
+        m.changeScene("add_newbook.fxml");
         
     }
 
@@ -81,9 +83,6 @@ public class homeController {
     void aboutClick(ActionEvent event) throws IOException {     //when clicked about button
         FXMLLoader loader = new FXMLLoader(getClass().getResource("about.fxml"));
         root = loader.load();
-        
-        aboutController ab = (aboutController)loader.getController();
-        ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -95,9 +94,6 @@ public class homeController {
     void listClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
         root = loader.load();
-        
-        aboutController ab = (aboutController)loader.getController();
-        ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -109,9 +105,6 @@ public class homeController {
     void searchClick(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("searchbook.fxml"));
         root = loader.load();
-        
-        aboutController ab = (aboutController)loader.getController();
-        ab.getInfo(profile.getText());
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -125,9 +118,6 @@ public class homeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
         root = loader.load();
         
-        aboutController ab = (aboutController)loader.getController();
-        ab.getInfo(profile.getText());
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

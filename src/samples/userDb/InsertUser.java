@@ -6,7 +6,7 @@ public class InsertUser {
     public static void main(String[] args) {
         CreateUserTable.main(args);
         try (ConnectDB conn = ConnectDB.getConnection();) {
-            int ret = conn.executeUpdate("INSERT INTO user(username,email,password) VALUES(?,?,?)", "Srun","chheangsrun@gmail.com","123");
+            int ret = conn.executeUpdate("INSERT INTO user(username,email,password) VALUES(?,?,?)", "Srun","srun@gmail.com","123");
             System.out.println(ret);
             ret = conn.executeUpdate("INSERT INTO user(username,email,password) VALUES(?,?,?)", "Chan","channy@gmail.com","123");
             System.out.println(ret);

@@ -47,12 +47,8 @@ public class loginController {
         if (exist==true){
             wrongInfo.setText("Correct!");
 
-            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             root = loader.load();
-            
-            homeController userHome = (homeController)loader.getController();
-            userHome.getInfo(email_, password_);
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		    scene = new Scene(root);

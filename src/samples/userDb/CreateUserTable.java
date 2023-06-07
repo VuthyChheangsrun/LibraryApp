@@ -6,9 +6,9 @@ import samples.db.ConnectDB;
 
 
 public class CreateUserTable {
-    public static void main(String[] args) {
+    public static void main(String[] args)
         
-    } {
+    {
         ConnectDB conn = ConnectDB.getConnection();
         if(conn.isError()){
             System.err.println(conn.getException());
