@@ -92,7 +92,7 @@ public class homeController {
     
     @FXML
     void listClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListBook.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

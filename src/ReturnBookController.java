@@ -1,4 +1,4 @@
-package controllers;
+//package controllers;
 
 import java.beans.Statement;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import configs.DatabaseConnector;
+//import configs.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,7 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import util.IsNullAndEmpty;
+//import util.IsNullAndEmpty;
 
 public class ReturnBookController implements Initializable {
 
@@ -158,13 +158,13 @@ public class ReturnBookController implements Initializable {
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             Borrow borrows;
-            while (resultSet.next()) {
-                borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
-                        resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
-                        resultSet.getString("returnDate"), resultSet.getString("book"),
-                        resultSet.getString("isReturn"));
-                borrowList.add(borrows);
-            }
+            // while (resultSet.next()) {
+            //     borrows = new Borrow(resultSet.getString("borrowId"), resultSet.getString("name"),
+            //             resultSet.getString("schoolId"), resultSet.getString("borrowDate"),
+            //             resultSet.getString("returnDate"), resultSet.getString("book"),
+            //             resultSet.getString("isReturn"));
+            //     borrowList.add(borrows);
+            // }
         } catch (Exception e) {
             e.printStackTrace();
         }

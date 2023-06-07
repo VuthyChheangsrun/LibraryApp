@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import configs.DatabaseConnector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -210,7 +209,7 @@ public class BookController implements Initializable {
             Connection conn = DatabaseConnector.getConnection();
             String sql = "SELECT * FROM book";
             // Search Function
-            String search = searchField.getText();
+            String search = "kdkd";
             if (search != "") {
                 sql += " WHERE title LIKE '%" + search + "%'";
             }

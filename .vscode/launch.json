@@ -4,24 +4,33 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
-            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
-            "projectName": "LibraryApp_221a184e"
-            
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
-            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+        
+        
 
-            "projectName": "LibraryApp_c3a73ebf"
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "LibraryApp_30c5f2a4",
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+
         },
-   
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_221a184e"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_c3a73ebf"
+        }
     ]
 }
