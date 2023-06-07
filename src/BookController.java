@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -18,8 +23,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class BookController implements Initializable {
+
+    @FXML
+    private Button homeBtn;
 
     @FXML
     private TextField bookField;
@@ -71,6 +80,12 @@ public class BookController implements Initializable {
 
     @FXML
     private TableColumn<Book, String> statusCol;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private Button searchBtn;
 
     @FXML
     void autoGenerate(MouseEvent event) throws SQLException {
@@ -203,13 +218,85 @@ public class BookController implements Initializable {
         }
     }
 
+    @FXML
+    void handleSearch(ActionEvent event) throws SQLException {
+        showBook();
+    }
+
+    @FXML
+    void handleUpdate(ActionEvent event) {
+        String bookId = bookField.getText();
+        int id;
+        String title = titleField.getText();
+        String author = authorField.getText();
+        String year = yearField.getText();
+        String category = categoryField.getText();
+        String status = statusField.getText();
+
+        if (title == "" || title == null || author == "" || author == null || year == "" || year == null
+                || category == "" || category == null || status == "" || status == null) {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Fail");
+            alert.setHeaderText(null);
+            alert.setContentText("Please input all fields!!");
+            alert.showAndWait();
+            return;
+        } else {
+            try (Connection conn = DatabaseConnector.getConnection()) {
+                String sqlSelect = "SELECT * FROM book";
+                PreparedStatement statement = conn.prepareStatement(sqlSelect);
+                ResultSet rs = statement.executeQuery();
+                id = Integer.parseInt(bookId);
+                while (rs.next()) {
+                    if (rs.getInt("bookId") == id) {
+                        String sqlUpdate = "UPDATE book SET title= ? ,author= ? ,year= ?, category = ?, status = ? WHERE bookId = ? ";
+                        PreparedStatement statement2 = conn.prepareStatement(sqlUpdate);
+                        statement2.setString(1, title);
+                        statement2.setString(2, author);
+                        statement2.setString(3, year);
+                        statement2.setString(4, category);
+                        statement2.setString(5, status);
+                        statement2.setInt(6, id);
+
+                        statement2.executeUpdate();
+
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Success");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Update success.");
+                        alert.showAndWait();
+
+                        bookField.setText(null);
+                        titleField.setText(null);
+                        categoryField.setText(null);
+                        yearField.setText(null);
+                        statusField.setText(null);
+                        authorField.setText(null);
+
+                        showBook();
+
+                    }
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Fail");
+                alert.setHeaderText(null);
+                alert.setContentText("Fail insert!");
+                alert.showAndWait();
+            }
+
+        }
+    }
+
     public ObservableList<Book> getBooksList() throws SQLException {
         ObservableList<Book> bookList = FXCollections.observableArrayList();
         try {
             Connection conn = DatabaseConnector.getConnection();
             String sql = "SELECT * FROM book";
             // Search Function
-            String search = "kdkd";
+            String search = searchField.getText();
             if (search != "") {
                 sql += " WHERE title LIKE '%" + search + "%'";
             }
@@ -249,4 +336,24 @@ public class BookController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void handleRefresh(MouseEvent event) throws SQLException {
+        String refresh = searchField.getText();
+        if (refresh == null || refresh == "") {
+            showBook();
+        }
+    }
+
+    @FXML
+    void handleHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
 }
