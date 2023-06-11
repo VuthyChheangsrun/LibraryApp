@@ -76,7 +76,7 @@ public class homeController {
         list.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
         aboutButton.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
         borrowBook.setStyle("-fx-background-radius: 0; -fx-background-color: transparent");
-        logoutB.setStyle("-fx-border-color: white; -fx-background-color: gray");
+        logoutB.setStyle("-fx-border-color: white; -fx-background-color: transparent");
     }
 
     @FXML
