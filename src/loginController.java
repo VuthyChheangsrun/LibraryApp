@@ -31,8 +31,14 @@ public class loginController {
 
     @FXML
     void signupPage(ActionEvent event) throws IOException {
-        App m = new App();
-        m.changeScene("signup.fxml");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("signup.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private Stage stage;
