@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -27,6 +30,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class BookController implements Initializable {
+
+    @FXML
+    private Button homeBtn;
 
     @FXML
     private TextField bookField;
@@ -88,6 +94,7 @@ public class BookController implements Initializable {
     @FXML
     private Button searchBtn;
 
+<<<<<<< HEAD
     
     @FXML
     void swtHome(ActionEvent event) throws IOException {
@@ -100,6 +107,8 @@ public class BookController implements Initializable {
         window.show();
     }
 
+=======
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
     @FXML
     void autoGenerate(MouseEvent event) throws SQLException {
         int id = 0;
@@ -353,9 +362,27 @@ public class BookController implements Initializable {
     @FXML
     void handleRefresh(MouseEvent event) throws SQLException {
         String refresh = searchField.getText();
+<<<<<<< HEAD
         if(refresh == null || refresh == ""){
+=======
+        if (refresh == null || refresh == "") {
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
             showBook();
         }
     }
 
+<<<<<<< HEAD
+=======
+    @FXML
+    void handleHome(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
 }

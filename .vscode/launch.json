@@ -9,16 +9,37 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
+<<<<<<< HEAD
             "projectName": "LibraryApp - Copy_daeb23ba",
             "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
 
+=======
+            "projectName": "LibraryApp_34038988",
+            "vmArgs": "--module-path ${workspaceFolder}/lib/javafx-sdk-20/lib --add-modules javafx.controls,javafx.fxml"
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
+<<<<<<< HEAD
             "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_221a184e"
+=======
+            "projectName": "LibraryApp_30c5f2a4",
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml"
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+<<<<<<< HEAD
+            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+=======
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
             "projectName": "LibraryApp_221a184e"
         },
         {
@@ -26,7 +47,8 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "vmArgs": "--module-path \"D:/ITC_Year_3/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
             "projectName": "LibraryApp_c3a73ebf"
         }
     ]

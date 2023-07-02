@@ -50,4 +50,15 @@ public class Book {
         this.category = category;
         this.status = status;
     }
+<<<<<<< HEAD
+=======
+
+    public Book(String bookId, String title, String author, String year, String category) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.category = category;
+    }
+>>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
 }
