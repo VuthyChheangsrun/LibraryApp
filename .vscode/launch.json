@@ -9,19 +9,25 @@
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
-            "projectName": "LibraryApp_221a184e"
-            
+            "projectName": "LibraryApp - Copy_daeb23ba",
+            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
-
-            "projectName": "LibraryApp_c3a73ebf"
+            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_221a184e"
         },
-   
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "vmArgs": "--module-path \"C:/Users/YES/Documents/ITC_Year_3/Semester 02/IPE G11/LibraryApp - Copy/lib/javafx-sdk-20/lib\" --add-modules javafx.controls,javafx.fxml",
+            "projectName": "LibraryApp_c3a73ebf"
+        }
     ]
 }

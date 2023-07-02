@@ -74,9 +74,13 @@ public class homeController {
 
     @FXML
     void addClick(ActionEvent event) throws IOException {
-        App m = new App();
-        m.changeScene("add_newbook.fxml");
-        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -92,7 +96,7 @@ public class homeController {
     
     @FXML
     void listClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BookPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListBook.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
