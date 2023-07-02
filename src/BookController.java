@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+package controllers;
 
-
-=======
->>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -10,6 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import config.DatabaseConnector;
+import docs.IsNullAndEmpty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,85 +20,97 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class BookController implements Initializable {
 
     @FXML
-    private Button homeBtn;
+    private TableColumn<Books, String> authorCol;
 
     @FXML
-    private TextField bookField;
+    private Button bookBtn;
 
     @FXML
-    private TextField statusField;
+    private Button categoryBtn;
 
     @FXML
-    private TextField categoryField;
+    private ComboBox<Category> categoryCambo;
 
     @FXML
-    private TextField yearField;
+    private Button bookIssuesBtn;
 
     @FXML
     private TextField authorField;
 
     @FXML
+    private TextField yearField;
+
+    @FXML
+    private TableView<Books> bookTable;
+
+    @FXML
+    private Button bookstbn;
+
+    @FXML
+    private Button dashboardbtn;
+
+    @FXML
+    private Button deleteBtn;
+
+    @FXML
+    private TableColumn<Books, String> idCol;
+
+    @FXML
+    private TableColumn<Books, String> categoryCol;
+
+    @FXML
+    private TextField idField;
+
+    @FXML
+    private Button insertBtn;
+
+    @FXML
+    private Text logoutbtn;
+
+    @FXML
+    private TableColumn<Books, String> pageCol;
+
+    @FXML
+    private TextField pageField;
+
+    @FXML
+    private TableColumn<Books, String> titleCol;
+
+    @FXML
     private TextField titleField;
 
     @FXML
-    private Button btnInsert;
+    private Button updateBtn;
 
     @FXML
-    private Button btnUpdate;
+    private TableColumn<Books, String> yearCol;
 
     @FXML
-    private Button btnDelete;
+    private Button clearBtn;
 
     @FXML
-    private Button btnClear;
-
-    @FXML
-    private TableView<Book> tableView;
-
-    @FXML
-    private TableColumn<Book, String> idCol;
-
-    @FXML
-    private TableColumn<Book, String> titleCol;
-
-    @FXML
-    private TableColumn<Book, String> authorCol;
-
-    @FXML
-    private Button btnHome;
-
-    @FXML
-    private TableColumn<Book, String> yearCol;
-
-    @FXML
-    private TableColumn<Book, String> categoryCol;
-
-    @FXML
-    private TableColumn<Book, String> statusCol;
+    private Button searchBtn;
 
     @FXML
     private TextField searchField;
 
     @FXML
-    private Button searchBtn;
-
-<<<<<<< HEAD
-    
-    @FXML
-    void swtHome(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+    void handleBookIssues(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/BookIssuePage.fxml"));
         Parent welcomeParent = loader.load();
         Scene welcomeScene = new Scene(welcomeParent);
 
@@ -107,88 +119,97 @@ public class BookController implements Initializable {
         window.show();
     }
 
-=======
->>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
+    @FXML
+    void handleCategory(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/CategoryPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
+    @FXML
+    void clearData(ActionEvent event) {
+        idField.setText(null);
+        titleField.setText(null);
+        authorField.setText(null);
+        yearField.setText(null);
+        pageField.setText(null);
+        categoryCambo.setPromptText("select");
+    }
+
+    @FXML
+    void handleLogout(MouseEvent event) throws IOException {
+        // handle logout
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/LoginPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
+    @FXML
+    void linkDashboard(ActionEvent event) throws IOException {
+        // link dashboard
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/DashboardPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+
+    @FXML
+    void linkToBookPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/BookPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
+    @FXML
+    void handledashboard(ActionEvent event) throws IOException{
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/DashboardPage.fxml"));
+        Parent welcomeParent = loader.load();
+        Scene welcomeScene = new Scene(welcomeParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(welcomeScene);
+        window.show();
+    }
     @FXML
     void autoGenerate(MouseEvent event) throws SQLException {
         int id = 0;
         Connection conn = DatabaseConnector.getConnection();
-        String sql = "SELECT * FROM book";
+        String sql = "SELECT * FROM books";
         PreparedStatement statement = conn.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             id = rs.getInt("bookId") + 1;
         }
         String convert = Integer.toString(id);
-        bookField.setText(convert);
+        idField.setText(convert);
     }
 
     @FXML
-    void getItem(MouseEvent event) {
-        Integer index = tableView.getSelectionModel().getSelectedIndex();
-        if (index <= -1) {
-            return;
-        }
-        bookField.setText(idCol.getCellData(index).toString());
-        titleField.setText(titleCol.getCellData(index).toString());
-        yearField.setText(yearCol.getCellData(index).toString());
-        categoryField.setText(categoryCol.getCellData(index).toString());
-        statusField.setText(statusCol.getCellData(index).toString());
-        authorField.setText(authorCol.getCellData(index).toString());
-    }
-
-    @FXML
-    void handleClear(ActionEvent event) {
-        bookField.setText(null);
-        titleField.setText(null);
-        categoryField.setText(null);
-        yearField.setText(null);
-        statusField.setText(null);
-        authorField.setText(null);
-    }
-
-    @FXML
-    void handleDelete(ActionEvent event) {
-        String bookId = bookField.getText();
-        int id = Integer.parseInt(bookId);
-        try (Connection conn = DatabaseConnector.getConnection()) {
-            String sql = "DELETE FROM book WHERE bookId=?";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, id);
-            int rowsDeleted = statement.executeUpdate();
-            if (rowsDeleted > 0) {
-                // System.out.println("Record deleted successfully.");
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText(null);
-                alert.setContentText("Record deleted successfully.");
-                alert.showAndWait();
-
-                handleClear(event);
-                showBook();
-            } else {
-                // System.out.println("Record not found.");
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Fail");
-                alert.setHeaderText(null);
-                alert.setContentText("Fail delete!!.");
-                alert.showAndWait();
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void handleInsert(ActionEvent event) {
+    void insertBook(ActionEvent event) {
+        // String bookId = idField.getText();
         String title = titleField.getText();
         String author = authorField.getText();
         String year = yearField.getText();
-        String category = categoryField.getText();
-        String status = statusField.getText();
-        if (title == "" || title == null || author == "" || author == null || year == "" || year == null
-                || category == "" || category == null || status == "" || status == null) {
+        String page = pageField.getText();
+        String category = categoryCambo.getSelectionModel().getSelectedItem().toString();
+
+        IsNullAndEmpty obj = new IsNullAndEmpty();
+        if (obj.isNullAndEmpty(title) || obj.isNullAndEmpty(author) || obj.isNullAndEmpty(page)
+                || obj.isNullAndEmpty(category) || obj.isNullAndEmpty(year)) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -197,13 +218,13 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnector.getConnection()) {
-                String sqlInsert = "INSERT INTO `book`(`title`, `author`, `year`, `category`, `status`) VALUES (?,?,?,?,?)";
+                String sqlInsert = "INSERT INTO `books`(`title`, `author`, `year`, `pages`, `category`) VALUES (?,?,?,?,?)";
                 PreparedStatement statement = conn.prepareStatement(sqlInsert);
                 statement.setString(1, title);
                 statement.setString(2, author);
                 statement.setString(3, year);
-                statement.setString(4, category);
-                statement.setString(5, status);
+                statement.setString(4, page);
+                statement.setString(5, category);
 
                 int rowsInserted = statement.executeUpdate();
                 if (rowsInserted > 0) {
@@ -212,15 +233,14 @@ public class BookController implements Initializable {
                     alert.setHeaderText(null);
                     alert.setContentText("Insert success.");
                     alert.showAndWait();
-                    bookField.setText(null);
-                    titleField.setText(null);
-                    categoryField.setText(null);
-                    yearField.setText(null);
-                    statusField.setText(null);
-                    authorField.setText(null);
+                    // idField.setText(null);
+                    // titleField.setText(null);
+                    // authorField.setText(null);
+                    // yearField.setText(null);
+                    // pageField.setText(null);
+                    clearData(event);
 
-                    showBook();
-
+                    showBooks();
                 } else {
                     Alert alert = new Alert(AlertType.WARNING);
                     alert.setTitle("Fail");
@@ -241,22 +261,44 @@ public class BookController implements Initializable {
     }
 
     @FXML
-    void handleSearch(ActionEvent event) throws SQLException {
-        showBook();
+    void getItem(MouseEvent event) throws SQLException {
+        Integer index = bookTable.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        idField.setText(idCol.getCellData(index).toString());
+        titleField.setText(titleCol.getCellData(index).toString());
+        authorField.setText(authorCol.getCellData(index).toString());
+        yearField.setText(yearCol.getCellData(index).toString());
+        pageField.setText(pageCol.getCellData(index).toString());
+        int catSize = getCategoryList().size();
+        String compare = categoryCol.getCellData(index).toString();
+        categoryCambo.setPromptText(compare);
+        for (int i = 0; i < catSize; i++) {
+            if (categoryCambo.getItems().get(i).toString().equals(compare)) {
+                categoryCambo.getItems().get(i);
+                categoryCambo.setValue(categoryCambo.getItems().get(i));
+                // System.out.println(categoryCambo.getItems().get(i));
+            }
+        }
+
     }
 
     @FXML
-    void handleUpdate(ActionEvent event) {
-        String bookId = bookField.getText();
+    void updateBook(ActionEvent event) {
+        String bookId = idField.getText();
         int id;
+        // System.out.println("kdkeicdlfjkwwwwwwwwwwwwww");
         String title = titleField.getText();
         String author = authorField.getText();
         String year = yearField.getText();
-        String category = categoryField.getText();
-        String status = statusField.getText();
+        String page = pageField.getText();
+        String category = categoryCambo.getSelectionModel().getSelectedItem().toString();
+        boolean con = true;
 
-        if (title == "" || title == null || author == "" || author == null || year == "" || year == null
-                || category == "" || category == null || status == "" || status == null) {
+        IsNullAndEmpty obj = new IsNullAndEmpty();
+        if (obj.isNullAndEmpty(bookId) || obj.isNullAndEmpty(title) || obj.isNullAndEmpty(author)
+                || obj.isNullAndEmpty(page) || obj.isNullAndEmpty(year) || obj.isNullAndEmpty(category)) {
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Fail");
             alert.setHeaderText(null);
@@ -265,19 +307,19 @@ public class BookController implements Initializable {
             return;
         } else {
             try (Connection conn = DatabaseConnector.getConnection()) {
-                String sqlSelect = "SELECT * FROM book";
+                String sqlSelect = "SELECT * FROM books";
                 PreparedStatement statement = conn.prepareStatement(sqlSelect);
                 ResultSet rs = statement.executeQuery();
                 id = Integer.parseInt(bookId);
                 while (rs.next()) {
-                    if (rs.getInt("bookId") == id) {
-                        String sqlUpdate = "UPDATE book SET title= ? ,author= ? ,year= ?, category = ?, status = ? WHERE bookId = ? ";
-                        PreparedStatement statement2 = conn.prepareStatement(sqlUpdate);
+                    if (rs.getInt("bookid") == id) {
+                        String sqlInsert = "UPDATE books SET title= ? ,author= ? ,year= ?,pages= ?, category = ? WHERE bookId= ? ";
+                        PreparedStatement statement2 = conn.prepareStatement(sqlInsert);
                         statement2.setString(1, title);
                         statement2.setString(2, author);
                         statement2.setString(3, year);
-                        statement2.setString(4, category);
-                        statement2.setString(5, status);
+                        statement2.setString(4, page);
+                        statement2.setString(5, category);
                         statement2.setInt(6, id);
 
                         statement2.executeUpdate();
@@ -287,17 +329,22 @@ public class BookController implements Initializable {
                         alert.setHeaderText(null);
                         alert.setContentText("Update success.");
                         alert.showAndWait();
+                        con = false;
 
-                        bookField.setText(null);
+                        idField.setText(null);
                         titleField.setText(null);
-                        categoryField.setText(null);
-                        yearField.setText(null);
-                        statusField.setText(null);
                         authorField.setText(null);
-
-                        showBook();
-
+                        yearField.setText(null);
+                        pageField.setText(null);
+                        showBooks();
                     }
+                }
+                if (con) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("ID not Found!");
+                    alert.showAndWait();
                 }
 
             } catch (SQLException e) {
@@ -312,25 +359,73 @@ public class BookController implements Initializable {
         }
     }
 
-    public ObservableList<Book> getBooksList() throws SQLException {
-        ObservableList<Book> bookList = FXCollections.observableArrayList();
-        try {
-            Connection conn = DatabaseConnector.getConnection();
-            String sql = "SELECT * FROM book";
-            // Search Function
-            String search = searchField.getText();
-            if (search != "") {
-            sql += " WHERE title LIKE '%" + search + "%'";
+    @FXML
+    void deleteBook(ActionEvent event) {
+        String bookId = idField.getText();
+        int id = Integer.parseInt(bookId);
+        try (Connection conn = DatabaseConnector.getConnection()) {
+            String sql = "DELETE FROM books WHERE bookId=?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                // System.out.println("Record deleted successfully.");
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Record deleted successfully.");
+                alert.showAndWait();
+
+                idField.setText(null);
+                titleField.setText(null);
+                authorField.setText(null);
+                yearField.setText(null);
+                pageField.setText(null);
+                showBooks();
+            } else {
+                // System.out.println("Record not found.");
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Fail");
+                alert.setHeaderText(null);
+                alert.setContentText("Fail delete!!.");
+                alert.showAndWait();
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            showBooks();
+            getCategoryList();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<Books> getBooksList() throws SQLException {
+        ObservableList<Books> bookList = FXCollections.observableArrayList();
+        try {
+            Connection conn = DatabaseConnector.getConnection();
+            String sql = "SELECT * FROM books";
+            // Search Function
+            String search = searchField.getText();
+            if(search!=""){
+                sql += " WHERE title LIKE '%" +search+ "%'";
+            }
+            
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-            Book book;
+            Books books;
             while (resultSet.next()) {
-                book = new Book(resultSet.getString("bookId"), resultSet.getString("title"),
-                        resultSet.getString("author"), resultSet.getString("year"),
-                        resultSet.getString("category"), resultSet.getString("status"));
-                bookList.add(book);
+                books = new Books(resultSet.getString("bookId"), resultSet.getString("title"),
+                        resultSet.getString("author"), resultSet.getString("year"), resultSet.getString("pages"),
+                        resultSet.getString("category"));
+                bookList.add(books);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -339,43 +434,46 @@ public class BookController implements Initializable {
 
     }
 
-    public void showBook() throws SQLException {
-        ObservableList<Book> list = getBooksList();
-        idCol.setCellValueFactory(new PropertyValueFactory<Book, String>("bookId"));
-        titleCol.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
-        authorCol.setCellValueFactory(new PropertyValueFactory<Book, String>("author"));
-        yearCol.setCellValueFactory(new PropertyValueFactory<Book, String>("year"));
-        categoryCol.setCellValueFactory(new PropertyValueFactory<Book, String>("category"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<Book, String>("status"));
-        tableView.setItems(list);
+    public void showBooks() throws SQLException {
+        ObservableList<Books> list = getBooksList();
+        idCol.setCellValueFactory(new PropertyValueFactory<Books, String>("bookId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
+        authorCol.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
+        yearCol.setCellValueFactory(new PropertyValueFactory<Books, String>("year"));
+        pageCol.setCellValueFactory(new PropertyValueFactory<Books, String>("pages"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<Books, String>("category"));
+        bookTable.setItems(list);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public ObservableList<Category> getCategoryList() throws SQLException {
+        ObservableList<Category> categoryList = FXCollections.observableArrayList();
         try {
-            showBook();
-        } catch (SQLException e) {
+            Connection conn = DatabaseConnector.getConnection();
+            String sql = "SELECT * FROM category";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            Category category;
+            while (resultSet.next()) {
+                category = new Category(resultSet.getString("catName"));
+                categoryList.add(category);
+            }
+            categoryCambo.setItems(categoryList);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        // System.out.println(categoryList);
+        return categoryList;
     }
-
+    
     @FXML
-    void handleRefresh(MouseEvent event) throws SQLException {
-        String refresh = searchField.getText();
-<<<<<<< HEAD
-        if(refresh == null || refresh == ""){
-=======
-        if (refresh == null || refresh == "") {
->>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
-            showBook();
-        }
+    void handleSearch(ActionEvent event) throws SQLException {
+        showBooks();
     }
-
-<<<<<<< HEAD
-=======
     @FXML
-    void handleHome(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
+    private Button borrowBtn;
+    @FXML
+    void handleBorrow(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/pages/BorrowPage.fxml"));
         Parent welcomeParent = loader.load();
         Scene welcomeScene = new Scene(welcomeParent);
 
@@ -384,5 +482,4 @@ public class BookController implements Initializable {
         window.show();
     }
 
->>>>>>> fe2a6ebd7c5cea6b7bc647687a18ddcacdddb057
 }
