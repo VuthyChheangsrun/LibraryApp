@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #293945;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <children>
+      <Pane layoutX="303.0" layoutY="103.0" prefHeight="396.0" prefWidth="297.0" style="-fx-background-color: #B1B8BE; -fx-border-radius: 10; -fx-background-radius: 10 10 10 10; -fx-border-color: #1674CB; -fx-border-width: 2px;">
+         <children>
+            <Text layoutX="54.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" x="63.0" y="25.0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <fill>
+                  <LinearGradient endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.10000000149011612" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <TextField fx:id="loginUsername" layoutX="23.0" layoutY="93.0" prefHeight="40.0" prefWidth="252.0" promptText="  Username" style="-fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20; -fx-background-color: D9D9D9; -fx-font: black;" />
+            <Button fx:id="loginbtn" layoutX="23.0" layoutY="216.0" mnemonicParsing="false" onAction="#doLogin" prefHeight="40.0" prefWidth="252.0" style="-fx-background-color: #293945; -fx-border-radius: 20 20 20 20; -fx-background-radius: 20 20 20 20;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Text fx:id="signUpbtn" layoutX="61.0" layoutY="333.0" onMouseClicked="#handleSignUp" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up" x="63.0" y="25.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.05263157933950424" blue="0.7894737124443054" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Text>
+            <PasswordField fx:id="loginPassword" layoutX="23.0" layoutY="153.0" prefHeight="40.0" prefWidth="252.0" promptText="Password" style="-fx-background-radius: 20 20 20 20; -fx-background-color: D9D9D9;" />
+         </children></Pane>
+   </children>
+</Pane>

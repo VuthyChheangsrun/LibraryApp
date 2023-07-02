@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="949.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BorrowingController">
+   <children>
+      <Pane layoutX="-5.0" layoutY="-3.0" prefHeight="590.0" prefWidth="954.0" style="-fx-background-radius: 12 12 12 12; -fx-background-color: #526D82;">
+         <children>
+            <Pane layoutX="-5.0" layoutY="80.0" prefHeight="508.0" prefWidth="258.0" style="-fx-background-radius: 0; -fx-background-color: #526D82;">
+               <children>
+                  <TextField fx:id="searchField" layoutX="60.0" layoutY="347.0" prefHeight="38.0" prefWidth="160.0" promptText="Search borrow" style="-fx-background-radius: 5; -fx-background-color: #DDE6ED;">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="36.0" layoutY="407.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="178.0" style="-fx-background-radius: 30 30 30 30; -fx-background-color: brown;" text="Report" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="21.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/icons8-logout-26.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="logoutbtn" layoutX="7.0" layoutY="484.0" onMouseClicked="#logout" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="searchBtn" layoutX="99.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="31.0" prefWidth="84.0" style="-fx-background-radius: 20 20 20 20; -fx-background-color: #1E90FF;" text="Search">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Pane layoutX="52.0" layoutY="32.0" prefHeight="309.0" prefWidth="178.0" style="-fx-background-color: #DDE6ED; -fx-background-radius: 10;">
+                     <children>
+                        <Text fontSmoothingType="LCD" layoutX="39.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Option" wrappingWidth="124.00002479553223">
+                           <font>
+                              <Font name="Freeform 721 Bold BT" size="29.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="insertBtn2" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" onAction="#insertBook" prefHeight="41.0" prefWidth="150.0" style="-fx-background-radius: 5; -fx-background-color: #1E90FF;" text="Borrow" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="borrowingBtn" layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleBorrowing" prefHeight="41.0" prefWidth="150.0" style="-fx-background-radius: 5; -fx-background-color: #1E90FF;" text="Borrowing">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="insertBtn21" layoutX="14.0" layoutY="235.0" mnemonicParsing="false" onAction="#returnBook" prefHeight="41.0" prefWidth="150.0" style="-fx-background-radius: 5; -fx-background-color: #1E90FF;" text="Return" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Line endX="544.0" endY="-8.0" layoutX="424.0" layoutY="88.0" startX="-171.0" startY="-8.0" />
+            <TableView fx:id="tableView" layoutX="254.0" layoutY="80.0" onMouseClicked="#getItem" prefHeight="329.0" prefWidth="698.0" style="-fx-background-color: #AFEEEE;">
+               <columns>
+                  <TableColumn fx:id="idCol" prefWidth="70.39999389648438" text="ID" />
+                  <TableColumn fx:id="nameCol" prefWidth="128.0" text="Name" />
+                  <TableColumn fx:id="schoolIdCol" prefWidth="105.0" text="Student ID" />
+                  <TableColumn fx:id="telCol" prefWidth="137.0" text="Telephone" />
+                  <TableColumn fx:id="borrowDateCol" prefWidth="97.0" text="Borrow date" />
+                  <TableColumn fx:id="returnDateCol" minWidth="0.0" prefWidth="92.0" text="Return date" />
+                  <TableColumn fx:id="isReturnCol" minWidth="0.0" text="IsReturn" />
+               </columns>
+            </TableView>
+            <TableView fx:id="bookTable" layoutX="255.0" layoutY="437.0" onMouseClicked="#getItem2" prefHeight="155.0" prefWidth="697.0" style="-fx-background-color: #AFEEEE;">
+              <columns>
+                <TableColumn fx:id="bookIdCol" prefWidth="351.3333435058594" text="Book ID" />
+                <TableColumn fx:id="bookNameCol" minWidth="0.0" prefWidth="344.0" text="Book name" />
+              </columns>
+            </TableView>
+            <Button fx:id="dashboardBtn" layoutX="281.0" layoutY="12.0" mnemonicParsing="false" onAction="#handledashboard" prefHeight="50.0" prefWidth="160.0" style="-fx-background-radius: 15; -fx-background-color: #19A7CE;" text="        Main" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="bookstbn" layoutX="514.0" layoutY="12.0" mnemonicParsing="false" onAction="#linkToBookPage" prefHeight="50.0" prefWidth="160.0" style="-fx-background-radius: 10; -fx-background-color: #19A7CE;" text="       Books" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="530.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/text-books.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="298.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/data-management.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="borrowBtn" layoutX="769.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBorrow" prefHeight="50.0" prefWidth="160.0" style="-fx-background-radius: 10; -fx-background-color: #19A7CE;" text="      Borrow" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="777.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/book.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="254.0" layoutY="410.0" prefHeight="26.0" prefWidth="697.0" style="-fx-background-color: yellow;">
+               <children>
+                  <Text fill="#00ddff" layoutX="287.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booked borrow">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ImageView fitHeight="59.0" fitWidth="59.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/icons8-user-100.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</Pane>

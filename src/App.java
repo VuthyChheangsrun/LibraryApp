@@ -10,9 +10,7 @@ public class App extends Application {
     public static void main(String[] args) throws Exception {
         launch(args);
     }
-
     private static Stage stg;
-
     @Override
     public void start(Stage stage) throws Exception {
         stg = stage;
