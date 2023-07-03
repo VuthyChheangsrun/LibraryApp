@@ -233,11 +233,40 @@ public class BorrowController implements Initializable {
         var selectedItem = borrowCombo.getSelectionModel().getSelectedItem();
         String bookId = "";
         String bookName = "";
+        
+        boolean yes = true;
 
         if (selectedItem != null && !selectedItem.toString().isEmpty()) {
             var selectedString = selectedItem.toString();
             bookId = selectedString.substring(0, selectedString.indexOf("-"));
             bookName = selectedString.substring(selectedString.indexOf("-") + 1);
+
+            Connection conn = DatabaseConnector.getConnection();
+            // 
+            String sqlselectpage = "SELECT `pages` FROM `books` WHERE `bookId`=?";
+            PreparedStatement statementpage = conn.prepareStatement(sqlselectpage);
+            statementpage.setString(1, bookId);
+
+            ResultSet rsselect = statementpage.executeQuery();
+            rsselect.next();
+
+            int samebookcount = 0;
+            for (Cart cart : carts) {
+                if (cart.getBookId().compareTo(bookId)==0){
+                    samebookcount++;
+                }
+            }
+            
+            if (rsselect.getString("pages").compareTo("0")==0 || Integer.parseInt(rsselect.getString("pages"))<=samebookcount){
+                yes = false;
+            
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Fail");
+                alert.setHeaderText(null);
+                alert.setContentText("Book is out of stock!");
+                alert.showAndWait();
+            }
+            
         } else {
             return;
         }
@@ -251,7 +280,7 @@ public class BorrowController implements Initializable {
             return;
         }
 
-        carts.add(new Cart(bookId, bookName));
+        if (yes==true) carts.add(new Cart(bookId, bookName));
 
         ObservableList<Cart> bookList = FXCollections.observableArrayList(carts);
         bookIdCol.setCellValueFactory(new PropertyValueFactory<>("bookId"));
@@ -354,6 +383,26 @@ public class BorrowController implements Initializable {
                                 "INSERT INTO `borrowbook`(`borrowId`, `bookId`) VALUES ");
                         for (Cart cart : carts) {
                             sql2.append("('").append(lastInsertId).append("','").append(cart.getBookId()).append("'),");
+                            
+                            // now im setting pages as a quantity of the book
+                            String sqlselectpage = "SELECT `pages` FROM `books` WHERE `bookId`=?";
+                            PreparedStatement statementpage = conn.prepareStatement(sqlselectpage);
+                            statementpage.setString(1, cart.getBookId());
+
+                            ResultSet rsselect = statementpage.executeQuery();
+                            rsselect.next();
+                            int npage = Integer.parseInt(rsselect.getString("pages"))-1;
+                            String snpage = Integer.toString(npage);
+                            
+                            String sqlupdate = "UPDATE `books` SET `pages`=?, `isActive`=? WHERE `bookId`=?";
+                            PreparedStatement statement2 = conn.prepareStatement(sqlupdate);
+                            statement2.setString(1, snpage);
+                            if (snpage.compareTo("0")==0) statement2.setString(2, "Disable");
+                            else statement2.setString(2, "Active");
+                            statement2.setString(3, cart.getBookId());
+
+                            statement2.executeUpdate();
+                        
                         }
                         String sql3 = sql2.substring(0, sql2.length() - 1);
                         PreparedStatement statement2 = conn.prepareStatement(sql3);
