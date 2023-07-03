@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="957.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BookController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="957.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.BookController">
    <children>
       <Pane layoutX="3.0" layoutY="1.0" prefHeight="582.0" prefWidth="952.0" style="-fx-background-radius: 12 12 12 12; -fx-background-color: #526D82;">
          <children>
@@ -92,7 +92,7 @@
                         <Font size="16.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="pageField" layoutX="15.0" layoutY="238.0" prefHeight="35.0" prefWidth="230.0" promptText="  Book page" style="-fx-background-radius: 5; -fx-background-color: #DDE6ED;">
+                  <TextField fx:id="pageField" layoutX="15.0" layoutY="238.0" prefHeight="35.0" prefWidth="230.0" promptText="Quantity" style="-fx-background-radius: 5; -fx-background-color: #DDE6ED;">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -131,7 +131,7 @@
                   <TableColumn fx:id="titleCol" prefWidth="102.39996337890625" text="Title" />
                   <TableColumn fx:id="authorCol" prefWidth="88.0" text="Author" />
                   <TableColumn fx:id="yearCol" prefWidth="60.800048828125" text="Year" />
-                  <TableColumn fx:id="pageCol" prefWidth="55.0" text="Page" />
+                  <TableColumn fx:id="pageCol" prefWidth="55.0" text="Qty" />
                   <TableColumn fx:id="categoryCol" prefWidth="144.0" text="Category" />
                </columns>
             </TableView>

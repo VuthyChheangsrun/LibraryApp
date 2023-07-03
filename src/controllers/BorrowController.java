@@ -529,7 +529,7 @@ public class BorrowController implements Initializable {
             // Search Function
             String search = searchField.getText();
             if (search != "") {
-                sql += " WHERE name LIKE '%" + search + "%'";
+                sql += " and name LIKE '%" + search + "%'";
             }
 
             PreparedStatement statement = conn.prepareStatement(sql);

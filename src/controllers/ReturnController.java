@@ -143,7 +143,38 @@ public class ReturnController implements Initializable {
                 PreparedStatement statement = conn.prepareStatement(sqlSelect);
                 ResultSet rs = statement.executeQuery();
                 id = Integer.parseInt(bookId);
+
+                if (isReturn.compareTo("Return")==0){
+                    String sqlSelect2 = "SELECT * FROM borrowbook";
+                    PreparedStatement statementbbook = conn.prepareStatement(sqlSelect2);
+                    ResultSet rs2 = statementbbook.executeQuery();
+                    
+                    while (rs2.next()){
+                        if (rs2.getInt("borrowId")==id){
+
+                            String sqlselectpage = "SELECT `pages` FROM `books` WHERE `bookId`=?";
+                            PreparedStatement statementpage = conn.prepareStatement(sqlselectpage);
+                            statementpage.setInt(1, rs2.getInt("bookId"));
+
+                            ResultSet rsselect = statementpage.executeQuery();
+                            rsselect.next();
+                            int npage = Integer.parseInt(rsselect.getString("pages"))+1;
+                            String snpage = Integer.toString(npage);
+
+                            String sqlInsert = "UPDATE books SET pages= ?, isActive=? WHERE bookId= ? ";
+                            PreparedStatement statement2 = conn.prepareStatement(sqlInsert);
+                            statement2.setString(1, snpage);
+                            statement2.setString(2, "Active");
+                            statement2.setInt(3, rs2.getInt("bookId"));
+
+                            statement2.executeUpdate();
+
+                        }
+                    }
+                }
+
                 while (rs.next()) {
+
                     if (rs.getInt("borrowId") == id) {
                         String sqlInsert = "UPDATE borrow SET isReturn= ? WHERE borrowId= ? ";
                         PreparedStatement statement2 = conn.prepareStatement(sqlInsert);

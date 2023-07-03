@@ -22,12 +22,12 @@
                         <Font name="System Bold" size="19.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="19.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="21.0" layoutY="437.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/icons8-logout-26.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="logoutbtn" layoutX="23.0" layoutY="445.0" onMouseClicked="#handleLogout" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="72.13330078125">
+                  <Text fx:id="logoutbtn" layoutX="19.0" layoutY="462.0" onMouseClicked="#handleLogout" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout" wrappingWidth="72.13330078125">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -89,7 +89,7 @@
                   <TableColumn fx:id="titleCol" prefWidth="124.0" text="Title" />
                   <TableColumn fx:id="authorCol" prefWidth="123.19998168945312" text="Author" />
                   <TableColumn fx:id="yearCol" prefWidth="91.20001220703125" text="Year" />
-                  <TableColumn fx:id="pageCol" prefWidth="74.4000244140625" text="Page" />
+                  <TableColumn fx:id="pageCol" prefWidth="74.4000244140625" text="Quantity" />
                   <TableColumn fx:id="categoryCol" prefWidth="120.0" text="Category" />
                   <TableColumn fx:id="isActiveCol" prefWidth="116.0" text="IsActive" />
                </columns>
